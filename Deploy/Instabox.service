@@ -1,0 +1,14 @@
+[Unit]
+Description=InstaBox backend (FastAPI)
+After=network.target
+
+[Service]
+Type=simple
+WorkingDirectory=/opt/instabox
+EnvironmentFile=/opt/instabox/.env.runtime
+ExecStart=/opt/instabox/venv/bin/uvicorn app.main:app --host 0.0.0.0 --port 8000
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
